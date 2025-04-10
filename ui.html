@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dev</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accentcolor': "#4B5153",
+                        'accentcolorbright': "#6b7376",
+                    }
+                }
+            }
+        }
+    </script>
+    <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
+
+</head>
+
+<body class="h-full bg-gray-50">
+
+    <!-- Mobile sidebar -->
+    <div id="mobileSidebar" class="fixed inset-0 z-50 lg:hidden hidden">
+        <div class="fixed inset-0 bg-gray-900/80"></div>
+        <div class="fixed inset-0 flex">
+            <div class="relative mr-16 flex w-full max-w-xs flex-1 bg-indigo-600 transition-transform transform">
+                <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+                    <button type="button" id="closeSidebarBtn" class="-m-2.5 p-2.5">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div
+                    class="flex grow flex-col gap-y-5 py-6 overflow-y-auto bg-white pb-2 border-r border-gray-200 bg-white px-6">
+                    <div class="flex px-12 bg-gray-50 rounded-xl"><img src="./icons/logo.svg" class="w-full py-8"></div>
+                    <nav class="flex flex-1 flex-col">
+                        <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                            <li>
+                                <ul role="list" class="space-y-1" id="navigationListMobile">
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Static sidebar for desktop -->
+    <div class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col">
+        <div class="flex grow flex-col gap-y-5 py-6 overflow-y-auto bg-white pb-2 border-r border-gray-200 bg-white px-6">
+            <div class="flex px-12 bg-gray-50 rounded-xl"><img src="./icons/logo.svg" class="w-full py-8"></div>
+            <nav class="flex flex-1 flex-col">
+                <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                    <li>
+                        <ul role="list" class="space-y-1" id="navigationListDesktop">
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <!-- Mobile top bar -->
+    <div class="sticky top-0 z-40 flex items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+        <button type="button" id="openSidebarBtn" class="-m-2.5 p-2.5 text-gray-700 lg:hidden">
+            <span class="sr-only">Open sidebar</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" aria-hidden="true" class="h-6 w-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5">
+
+                </path>
+            </svg>
+        </button>
+        <div id="mobileTopBarTitle" class="flex-1 text-sm font-semibold leading-6 text-gray-900">
+            Dashboard
+        </div>
+    </div>
+
+
+
+    <!-- Main content -->
+    <main class="py-10 lg:pl-72">
+        <div class="px-4 sm:px-6 lg:px-8">
+
+            <div id="dashboard" class="grid grid-cols-1 gap-4">
+                <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
+                    <p class="text-center text-5xl font-bold mx-auto my-12">Dashboard</p>
+                </div>
+            </div>
+
+            <div id="materials" class="grid grid-cols-1 gap-4">
+                <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
+                    <div class="flow-root">
+                        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8">
+                                <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                                    <div class="sm:col-span-3">
+                                        <div>
+                                            <label for="name"
+                                                class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                                            <div class="mt-2">
+                                                <input type="text" name="name" id="name" placeholder="asphalt"
+                                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-3">
+                                        <div><label for="color"
+                                                class="block text-sm font-medium leading-6 text-gray-900">Color
+                                                (Hex)</label>
+                                            <div class="mt-2"><input type="text" name="color" id="color"
+                                                    placeholder="#000000"
+                                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-3">
+                                        <div><label for="density"
+                                                class="block text-sm font-medium leading-6 text-gray-900">Density
+                                                (kg/m&sup3)</label>
+                                            <div class="mt-2"><input type="number" name="density" id="density"
+                                                    placeholder="2200"
+                                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-3">
+                                        <div><label for="albedo"
+                                                class="block text-sm font-medium leading-6 text-gray-900">Albedo
+                                                (0-1)</label>
+                                            <div class="mt-2"><input type="number" name="albedo" id="albedo"
+                                                    placeholder="0.5"
+                                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-6">
+                                        <div><label for="emissivity"
+                                                class="block text-sm font-medium leading-6 text-gray-900">Emissivity
+                                                (0-1)</label>
+                                            <div class="mt-2"><input type="number" name="emissivity" id="emissivity"
+                                                    placeholder="0.5"
+                                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-3">
+                                        <div><label for="capacity"
+                                                class="block text-sm font-medium leading-6 text-gray-900">Heat capacity
+                                                (J/(kg K))</label>
+                                            <div class="mt-2"><input type="number" name="capacity" id="capacity"
+                                                    placeholder="920"
+                                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                    value="5">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-3">
+                                        <div><label for="conductivity"
+                                                class="block text-sm font-medium leading-6 text-gray-900">Thermal
+                                                conductivity
+                                                (W/(m K))</label>
+                                            <div class="mt-2">
+                                                <input type="number" name="conductivity" id="conductivity"
+                                                    placeholder="0.75"
+                                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-6">
+                                        <div><label for="evapotranspirationFactor"
+                                                class="block text-sm font-medium leading-6 text-gray-900">
+                                                Evapotranspiration (ET) Factor
+                                                (0-1)</label>
+                                            <div class="mt-2">
+                                                <input type="number" name="evapotranspirationFactor" id="evapotranspirationFactor"
+                                                    placeholder="0.1"
+                                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex items-center justify-end gap-x-6">
+                        <button id="materialForm" type="button"
+                            class="inline-flex items-center gap-x-1.5 rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor">Create
+                            New Surface
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true" class="-mr-0.5 h-5 w-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
+                    <div class="flow-root">
+                        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                <table class="min-w-full divide-y divide-gray-300" id="surfaceTable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"
+                                                class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                                Name</th>
+                                            <th scope="col"
+                                                class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                Color</th>
+                                            <th scope="col"
+                                                class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                Density</th>
+                                            <th scope="col"
+                                                class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                Albedo</th>
+                                            <th scope="col"
+                                                class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                Emissivity</th>
+                                            <th scope="col"
+                                                class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                Heatcapacity</th>
+                                            <th scope="col"
+                                                class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                Thermalconductivity</th>
+                                            <th scope="col"
+                                                class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                ET Factor</th>
+                                            <th scope="col" class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-0">
+                                                <span class="sr-only">Edit</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 bg-white" id="materialsList">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex items-center justify-end gap-x-6">
+                        <input id="uploadMaterials" type="file" class="hidden" accept=".json">
+                        <button onclick="document.getElementById('uploadMaterials').click()" type="button"
+                            class="inline-flex items-center rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor">
+                            Upload
+                        </button>
+                        <button id="downloadMaterials" type="button"
+                            class="inline-flex items-center rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor">
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settings" class="grid grid-cols-1 gap-4">
+                <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
+                    <div class="space-y-12">
+                        <div>
+                            <div class="mt-3 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                                <div class="sm:col-span-2">
+                                    <div><label for="pointsXY"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Pixels in
+                                            XY</label>
+                                        <div class="mt-2"><input type="number" name="pointsXY" id="pointsXY"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="200">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div><label for="pointsZ"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Pixels in
+                                            Z</label>
+                                        <div class="mt-2"><input type="number" name="pointsZ" id="pointsZ"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="200"></div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div><label for="deltaX"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Pixel
+                                            width (m)</label>
+                                        <div class="mt-2"><input type="number" name="deltaX" id="deltaX"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="1"></div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div><label for="date"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Date &amp; Time of
+                                            Simulation (GMT+0)</label>
+                                        <div class="mt-2"><input type="datetime-local" name="date" id="date"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="2012-01-01T02:00"></div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div><label for="iterations"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Number of
+                                            iterations</label>
+                                        <div class="mt-2"><input type="number" name="iterations" id="iterations"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="2880"></div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div><label for="deltaTime"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Duration of one
+                                            iteration (s)</label>
+                                        <div class="mt-2"><input type="number" name="deltaTime" id="deltaTime"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="60"></div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <div><label for="geoLatitude"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Latitude of
+                                            location</label>
+                                        <div class="mt-2"><input type="number" name="geoLatitude" id="geoLatitude"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="-33.81280878353577"></div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <div><label for="geoLongitude"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Longitude of
+                                            location</label>
+                                        <div class="mt-2"><input type="number" name="geoLongitude" id="geoLongitude"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="151.0009543706906"></div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div><label for="initialTemperature"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Initial
+                                            temperature (&degC)</label>
+                                        <div class="mt-2"><input type="number" name="initialTemperature"
+                                                id="initialTemperature"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="37.4"></div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div><label for="radiation"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Radiation
+                                            (W/m&sup2)</label>
+                                        <div class="mt-2"><input type="number" name="radiation" id="radiation"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="650"></div>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <div><label for="maxWindSpeed"
+                                            class="block text-sm font-medium leading-6 text-gray-900">Max. wind
+                                            speed (m/s)</label>
+                                        <div class="mt-2"><input type="number" name="maxWindSpeed" id="maxWindSpeed"
+                                                class="settingsinput block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                value="4.5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex items-center justify-end gap-x-6">
+                        <input id="fileinputSettings" type="file" class="hidden" accept=".json">
+                        <button id="uploadSettings" type="button"
+                            class="inline-flex items-center rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor">
+                            Upload
+                        </button>
+                        <button id="downloadSettings" type="button"
+                            class="inline-flex items-center rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor">
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="map" class="grid grid-cols-1 gap-4">
+                <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
+                    <div class="space-t-12">
+                        <div>
+                            <div id="upload-container" class="flex">
+                                <button onclick="document.getElementById('mapInput').click()"
+                                    class="rounded-l-lg h-9 px-4 bg-accentcolor text-white align-middle">Chose
+                                    File</button>
+                                <div id="mapFileInputURL"
+                                    class="grow rounded-r-lg h-9 px-4 py-1.5 bg-gray-50 align-bottom">../</div>
+                                <input type="file" id="mapInput" accept=".vpp" class="hidden">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
+                    <div class="space-b-12">
+                        <div>
+                            <div id="container" class="w-full aspect-video">
+                                <div class="w-full p-20">
+                                    <p class="text-lg text-center">
+                                        Upload your map as a .vpp file or go to
+                                        <a href="https://voxelpaint.online/"
+                                            class="text-accentcolor font-bold">VoxelPaint.online</a>
+                                        to create one. Make sure to use the correct hexadecimal colors as specified in
+                                        the
+                                        <a onclick="updateContent('materials')"
+                                            class="text-accentcolor font-bold">materials tab</a>.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="testing" class="grid grid-cols-1 gap-4">
+                <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
+                    <div class="space-t-12">
+                        <div>
+                            <div id="upload-container" class="flex">
+                                <button onclick="document.getElementById('compareInput').click()"
+                                    class="rounded-l-lg h-9 px-4 bg-accentcolor text-white align-middle">Chose
+                                    File</button>
+                                <div id="compareFileInputURL"
+                                    class="grow rounded-r-lg h-9 px-4 py-1.5 bg-gray-50 align-bottom">../</div>
+                                <input type="file" id="compareInput" accept=".json" class="hidden">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
+                    <div class="space-b-12">
+                        <div>
+                            <div id="compareDisplay" class="w-full aspect-video">
+
+                                <div class="w-full p-20">
+                                    <p class="text-lg text-center">
+                                        Upload a temperature Heat Map of the correct size as .json file to compare with simulation Results.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="simulation">
+
+            <div class="grid grid-cols-2 md:grid-cols-6 md:grid-rows-4 gap-4 pb-4">
+                <div class="col-span-2">
+                    <div class="overflow-hidden flex rounded-lg bg-white px-4 py-5 shadow sm:p-6 h-full items-center text-center align-center my-auto">
+                        <button type="button" id="runSimulation"
+                            class="grid m-auto grid-cols-6 w-full rounded-md bg-accentcolor px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor">
+                            <span class="col-span-5 text-left">Run Simulation</span>
+                            <img src="./icons/white/simulation.svg" class="h-6 w-6 ml-auto">
+                        </button>
+                    </div>  
+                </div>
+                <div class="col-span-2 col-start-1 md:row-start-2">
+                    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                        <dt class="truncate text-sm font-medium text-gray-500">Maximum Temperature</dt>
+                        <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900" id="max">37.4 °C</dd>
+                    </div>
+                </div>
+                <div class="col-span-2 col-start-1 md:row-start-3">
+                    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                        <dt class="truncate text-sm font-medium text-gray-500">Average Temperature</dt>
+                        <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900" id="avg">37.4 °C</dd>
+                    </div>
+                </div>
+                <div class="col-span-2 col-start-1 md:row-start-4">
+                    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                        <dt class="truncate text-sm font-medium text-gray-500">Minimal Temperature</dt>
+                        <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900" id="min">37.4 °C</dd>
+                    </div>
+                </div>
+                <div class="col-span-2 col-start-1 md:col-span-4 md:col-start-3 md:row-start-1">
+                    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                        <dt class="truncate text-sm font-medium text-gray-500">Time (GMT+0)</dt>
+                        <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900" id="currentDate">01.01.2012 02:00</dd>
+                    </div>
+                </div>
+                <div class="col-span-2 col-start-1 md:col-span-4 md:row-span-3 md:col-start-3 md:row-start-2 aspect-square md:aspect-auto">
+                    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 w-full h-full">
+                        <div class="w-full h-full js-plotly-plot" id="plot">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="w-full aspect-video">
+                <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 w-full h-full">
+                    <div class="flex items-center justify-end gap-x-6">
+                        <a id="heatMapDownload" href="#" download="result.png"
+                            class="inline-flex items-center gap-x-1.5 rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor">
+                            <span class="col-span-5 text-left">2D Download</span>
+                        </a>
+                    </div>
+                    <div class="w-full h-full js-plotly-plot" id="resultContainer">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white my-4">
+                <div class="space-b-12">
+                    <div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" class="w-full">
+                            <canvas id="compareCanvasResult" class="w-full aspect-square"></canvas>
+                            <canvas id="diffCanvasResult" class="w-full aspect-square"></canvas>
+                            <canvas id="originalCanvasResult" class="w-full aspect-square"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+          }
+        }
+    </script>
+
+
+    <script src="./navigation.js"></script>
+
+    <script src="./materials.js"></script>
+    <script src="./settings.js"></script>
+    <script src="./map.js" type="module" defer></script>
+    <script src="./testing.js"></script>
+
+    <script src="./getColorMap.js"></script>
+    <script src="./plot.js"></script>
+    <script src="./runSimulation.js"></script>
+    <script src="./plotResult.js" type="module" defer></script>
+
+    <script src="./serviceWorker.js"></script>
+
+</body>
+
+</html>
