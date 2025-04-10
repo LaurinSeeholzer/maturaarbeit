@@ -1,0 +1,200 @@
+[
+    {
+      "id": 0,
+      "name": "Air",
+      "color": "#111111",
+      "density": "1.164",
+      "albedo": "1",
+      "capacity": "1006",
+      "conductivity": "0.02662",
+      "evapotranspirationFactor": 0,
+      "emissivity": 0
+    },
+    {
+      "id": 4,
+      "name": "Asphalt",
+      "color": "#1c1c1c",
+      "density": "2360",
+      "albedo": "0.1",
+      "capacity": "920",
+      "conductivity": "0.75",
+      "evapotranspirationFactor": 0.075,
+      "emissivity": 0.93
+    },
+    {
+      "id": 5,
+      "name": "Concrete",
+      "color": "#878787",
+      "density": "2000",
+      "albedo": "0.25",
+      "capacity": "960",
+      "conductivity": "1.8",
+      "evapotranspirationFactor": 0.075,
+      "emissivity": 0.6
+    },
+    {
+      "id": 1693945654697,
+      "name": "Sandstone",
+      "color": "#706656",
+      "density": "2250",
+      "albedo": "0.3",
+      "capacity": "920",
+      "conductivity": "1.7",
+      "evapotranspirationFactor": 0.1,
+      "emissivity": 0.73
+    },
+    {
+      "id": 6,
+      "name": "Gravel",
+      "color": "#b8b8b8",
+      "density": "1600",
+      "albedo": "0.3",
+      "capacity": "900",
+      "conductivity": "0.7",
+      "evapotranspirationFactor": 0.1,
+      "emissivity": 0.28
+    },
+    {
+      "id": 1693946607537,
+      "name": "Grass & Soil (very moist)",
+      "color": "#007a1c",
+      "density": "2005",
+      "albedo": "0.1",
+      "capacity": "1480",
+      "conductivity": "1.4",
+      "evapotranspirationFactor": 0.4,
+      "emissivity": 0.925
+    },
+    {
+      "id": 1,
+      "name": "Grass & Soil (moist)",
+      "color": "#4e7327",
+      "density": "2005",
+      "albedo": "0.2",
+      "capacity": "1250",
+      "conductivity": "1",
+      "evapotranspirationFactor": 0.35,
+      "emissivity": 0.925
+    },
+    {
+      "id": 2,
+      "name": "Grass & Soil (dry)",
+      "color": "#525c32",
+      "density": "2005",
+      "albedo": "0.3",
+      "capacity": "1000",
+      "conductivity": "0.5",
+      "evapotranspirationFactor": 0.3,
+      "emissivity": 0.925
+    },
+    {
+      "id": 1693946947922,
+      "name": "Grass & Soil (very dry)",
+      "color": "#615d37",
+      "density": "2005",
+      "albedo": "0.3",
+      "capacity": "800",
+      "conductivity": "0.33",
+      "evapotranspirationFactor": 0.25,
+      "emissivity": 0.925
+    },
+    {
+      "id": 1693947210902,
+      "name": "Sand",
+      "color": "#b5a676",
+      "density": "1500",
+      "albedo": "0.4",
+      "capacity": "800",
+      "conductivity": "0.25",
+      "evapotranspirationFactor": 0.15,
+      "emissivity": 0.9
+    },
+    {
+      "id": 7,
+      "name": "Vegetation",
+      "color": "#023316",
+      "density": "1000",
+      "albedo": "0.1",
+      "capacity": "800",
+      "conductivity": "0.5",
+      "evapotranspirationFactor": 0.3,
+      "emissivity": 0.7
+    },
+    {
+      "id": 1693947865134,
+      "name": "Asphalt Roofing",
+      "color": "#333333",
+      "density": "2360",
+      "albedo": "0.91",
+      "capacity": "920",
+      "conductivity": "0.75",
+      "evapotranspirationFactor": 0.075,
+      "emissivity": 0.91
+    },
+    {
+      "id": 1693948094903,
+      "name": "Wood",
+      "color": "#574b35",
+      "density": "1500",
+      "albedo": "0.325",
+      "capacity": "2000",
+      "conductivity": "0.17",
+      "evapotranspirationFactor": 0.2,
+      "emissivity": 0.885
+    },
+    {
+      "id": 1693948413001,
+      "name": "Aluminium Roofing",
+      "color": "#a8a6a2",
+      "density": "2700",
+      "albedo": "0.3",
+      "capacity": "440",
+      "conductivity": "121",
+      "evapotranspirationFactor": 0.025,
+      "emissivity": 0.09
+    },
+    {
+      "id": 1693948581428,
+      "name": "Slate Roofing",
+      "color": "#434b52",
+      "density": "3000",
+      "albedo": "0.2",
+      "capacity": "760",
+      "conductivity": "2.01",
+      "evapotranspirationFactor": 0.075,
+      "emissivity": 0.91
+    },
+    {
+      "id": 3,
+      "name": "Clay Roofing",
+      "color": "#a84723",
+      "density": "2200",
+      "albedo": "0.2",
+      "capacity": "920",
+      "conductivity": "1.4",
+      "evapotranspirationFactor": 0.075,
+      "emissivity": 0.75
+    },
+    {
+      "id": 8,
+      "name": "Water",
+      "color": "#002930",
+      "density": "998",
+      "albedo": "0.08",
+      "capacity": "4180",
+      "conductivity": "0.6145",
+      "evapotranspirationFactor": 1,
+      "emissivity": 0.96
+    },
+    {
+      "id": 15,
+      "name": "Brick",
+      "color": "#fc7303",
+      "density": "2300",
+      "albedo": "0.55",
+      "capacity": "900",
+      "conductivity": "1.4",
+      "evapotranspirationFactor": 0.075,
+      "emissivity": 0.75
+    }
+  ]
