@@ -12,8 +12,7 @@ Solarstrahlung, Evapotranspiration, Wärmediffusion, Wärmekonvektion und den W�
 
 Mittels des entwickelten Computermodells wurde ein Testszenario simuliert und entsprechende Wärmekarten generiert. 
 
-![Wärmekarte der Messdaten](https://github.com/LaurinSeeholzer/maturaarbeit/blob/main/simulation/simulationResults/comparisonImage.png?raw=true)
-![Wärmekarte des Simulationsresultats](https://github.com/LaurinSeeholzer/blob/maturaarbeit/main/simulation/simulationResults/resultImage.png?raw=true)
+![Wärmekarte der Messdaten](https://github.com/LaurinSeeholzer/maturaarbeit/blob/main/simulation/simulationResults/resultImageCombined.png?raw=true)
 
 Diese Wärmekarten wurden anschliessend mit tatsächlich gemessenen Wärmekarten des Simulationsgebiets verglichen.
 Der Vergleich zeigte, dass das Modell unter der Berücksichtigung der physikalischen Eigenschaften verschiedener Oberflächen eine realistische Verteilung der Oberflächentemperatur erzielen kann. Es ist zu erwähnen, dass das Modell nicht in der Lage ist, konkrete Temperaturwerte korrekt zu simulieren.  Des Weiteren wurde aus der Analyse der Resultate ersichtlich, dass das Modell sehr stark von der Feinabstimmung und Gewichtung der einzelnen Parameter abhängig ist.
