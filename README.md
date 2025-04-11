@@ -5,7 +5,7 @@
 
 Diese Arbeit untersucht die Möglichkeit, die Oberflächentemperatur in urbanen Gebieten mittels einer Computersimulation zu analysieren. Ein Computermodell bietet die Möglichkeit, mittels der Simulation stark betroffene Regionen zu identifizieren und auf entsprechende, meist finanziell aufwändige, Messungen zu verzichten.
 
-![3D Modelliertes Testszenario](https://github.com/LaurinSeeholzer/maturaarbeit/blob/main/simulation/model3D.png?raw=true)
+![3D Modelliertes Testszenario](https://github.com/LaurinSeeholzer/maturaarbeit/blob/main/simulation/modelCombined.png?raw=true)
 
 Mit der Programmiersprache JavaScript wurde ein Computermodell entwickelt, welches
 Solarstrahlung, Evapotranspiration, Wärmediffusion, Wärmekonvektion und den Wärmeverlust durch Strahlung berücksichtigt. 
