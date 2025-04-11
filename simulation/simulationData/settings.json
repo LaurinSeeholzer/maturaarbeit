@@ -1,0 +1,13 @@
+{
+	"pointsXY":100,
+	"pointsZ":10,
+	"deltaX":2,
+	"date":"2013-02-08T04:00",
+	"iterations":240,
+	"deltaTime":360,
+	"geoLatitude":-33.79,
+	"geoLongitude":150.97,
+	"initialTemperature":37,
+	"radiation":1000,
+	"maxWindSpeed":3
+}
