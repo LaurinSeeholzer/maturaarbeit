@@ -5,15 +5,15 @@
 
 Diese Arbeit untersucht die Möglichkeit, die Oberflächentemperatur in urbanen Gebieten mittels einer Computersimulation zu analysieren. Ein Computermodell bietet die Möglichkeit, mittels der Simulation stark betroffene Regionen zu identifizieren und auf entsprechende, meist finanziell aufwändige, Messungen zu verzichten.
 
-![3D Modelliertes Testszenario](https://github.com/LaurinSeeholzer/maturaarbeit/main/simulation/model3D.png?raw=true)
+![3D Modelliertes Testszenario](https://github.com/LaurinSeeholzer/maturaarbeit/blob/main/simulation/model3D.png?raw=true)
 
 Mit der Programmiersprache JavaScript wurde ein Computermodell entwickelt, welches
 Solarstrahlung, Evapotranspiration, Wärmediffusion, Wärmekonvektion und den Wärmeverlust durch Strahlung berücksichtigt. 
 
 Mittels des entwickelten Computermodells wurde ein Testszenario simuliert und entsprechende Wärmekarten generiert. 
 
-![Wärmekarte der Messdaten](https://github.com/LaurinSeeholzer/maturaarbeit/main/simulation/simulationResults/comparisonImage.png?raw=true)
-![Wärmekarte des Simulationsresultats](https://github.com/LaurinSeeholzer/maturaarbeit/main/simulation/simulationResults/resultImage.png?raw=true)
+![Wärmekarte der Messdaten](https://github.com/LaurinSeeholzer/maturaarbeit/blob/main/simulation/simulationResults/comparisonImage.png?raw=true)
+![Wärmekarte des Simulationsresultats](https://github.com/LaurinSeeholzer/blob/maturaarbeit/main/simulation/simulationResults/resultImage.png?raw=true)
 
 Diese Wärmekarten wurden anschliessend mit tatsächlich gemessenen Wärmekarten des Simulationsgebiets verglichen.
 Der Vergleich zeigte, dass das Modell unter der Berücksichtigung der physikalischen Eigenschaften verschiedener Oberflächen eine realistische Verteilung der Oberflächentemperatur erzielen kann. Es ist zu erwähnen, dass das Modell nicht in der Lage ist, konkrete Temperaturwerte korrekt zu simulieren.  Des Weiteren wurde aus der Analyse der Resultate ersichtlich, dass das Modell sehr stark von der Feinabstimmung und Gewichtung der einzelnen Parameter abhängig ist.
