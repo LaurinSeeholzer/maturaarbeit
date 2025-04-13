@@ -43,9 +43,11 @@
                     <div class="flex px-12 bg-gray-50 rounded-xl"><img src="./icons/logo.svg" class="w-full py-8"></div>
                     <nav class="flex flex-1 flex-col">
                         <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                            <li>
+                            <li class="py-2">
+                                
                                 <ul role="list" class="space-y-1" id="navigationListMobile">
                                 </ul>
+                            </p>
                             </li>
                         </ul>
                     </nav>
@@ -60,10 +62,12 @@
             <div class="flex px-12 bg-gray-50 rounded-xl"><img src="./icons/logo.svg" class="w-full py-8"></div>
             <nav class="flex flex-1 flex-col">
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                    <li>
+                    <li class="py-2">
+                                
                         <ul role="list" class="space-y-1" id="navigationListDesktop">
                         </ul>
-                    </li>
+                    </p>
+                            </li>
                 </ul>
             </nav>
         </div>
@@ -94,7 +98,64 @@
 
             <div id="dashboard" class="grid grid-cols-1 gap-4">
                 <div class="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
-                    <p class="text-center text-5xl font-bold mx-auto my-12">Dashboard</p>
+                    <p class="text-5xl font-bold my-4">Welcome to the Urban Heat Model</p>
+                    <p class="text-3xl font-bold my-8">Introduction</p>
+                    <p class="text-lg my-2">
+                        This web-based application is designed to help you model and analyze how different surface materials and urban layouts affect temperature development over time. The Tool alows you to configure different szenarios, run simulations and visualize the results.
+                    </p>
+
+                    <p class="text-3xl font-bold my-8">How to use</p>
+
+                    <p class="text-xl font-bold mt-8 mb-2">1. Material Configuration</p>
+                    <p class="text-lg my-2">
+                        Using the Materials page you can configure the physical properties of surface Materials used in the simulation. 
+                        You can configure:
+                        <ul>
+                            <li class="py-2">
+                                <strong class="bg-gray-100 px-2 rounded-md">Name</strong><span class="px-4 italic">String</span> <br>
+                                <p class="p-2">Name under which the Material will be saved</p>
+                            </li>
+                            <li class="py-2">
+                                <strong class="bg-gray-100 px-2 rounded-md">Color</strong><span class="px-4 italic">String</span> <br> 
+                                <p class="p-2">Hexadecimal Color-Code ex. #6b7376 of the Material. This will only be used to reference Materials in the 3D-Model</p>
+                            </li>
+                            <li class="py-2">
+                                <strong class="bg-gray-100 px-2 rounded-md">Density</strong><span class="px-4 italic">Float</span> <br>
+                                <p class="p-2">Physical density of the Material in kg/m^3</p>
+                            </li>
+                            <li class="py-2">
+                                <strong class="bg-gray-100 px-2 rounded-md">Albedo</strong><span class="px-4 italic">Float</span> <br> 
+                                <p class="p-2">Albedo reflexion-coefficient between 0 and 1. This describes fraction of the incoming Radiation is reflected back into the atmosphere.</p>
+                            </li>
+                            <li class="py-2">
+                                <strong class="bg-gray-100 px-2 rounded-md">Emissivity</strong><span class="px-4 italic">Float</span> <br> 
+                                <p class="p-2">Thermal emissivity-coefficient between 0 and 1. This messures how efficiently the material emits radiation.</p>
+                            </li>
+                            <li class="py-2">
+                                <strong class="bg-gray-100 px-2 rounded-md">Heat capacity</strong><span class="px-4 italic">Float</span> <br> 
+                                <p class="p-2">Specific heat capacity of the material in J/(kg K)</p>
+                            </li>
+                            <li class="py-2">
+                                <strong class="bg-gray-100 px-2 rounded-md">Thermal conductivity</strong><span class="px-4 italic">Float</span> <br> 
+                                <p class="p-2">Thermal conductivity in W/(m K)</p>
+                            </li>
+                            <li class="py-2">
+                                <strong class="bg-gray-100 px-2 rounded-md">Evapotranspiration factor</strong><span class="px-4 italic">Float</span> <br> 
+                                <p class="p-2">Factor between 0 and 1 used to determine the amount of evapotranspiration. Where 1 would represent a Body full of Water with 100% evaporation and 0 a body with no evaporation nor transpiration.</p>
+                            </li>
+                        </ul>
+
+                        All materials can be configured directly in the Web-App or uploaded as a JSON file. Make sure no doubles exist, this might cause errors.
+                    </p>
+
+                    <p class="text-xl font-bold mt-8 mb-2">2. Simulation Settings</p>
+                    <p class="text-lg my-2">
+
+                    </p>
+
+                    <p class="text-xl font-bold my-2">3. 3D-Model</p>
+                    <p class="text-xl font-bold my-2">4. Comparison Map</p>
+                    <p class="text-xl font-bold my-2">5. Running Simulations</p>
                 </div>
             </div>
 
